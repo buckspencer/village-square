@@ -1,0 +1,66 @@
+<%= form_with(model: listing, local: true) do |form| %>
+  <% if listing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+      <ul>
+        <% listing.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :price %>
+    <%= form.number_field :price, step: 0.01 %>
+  </div>
+
+  <div>
+    <%= form.label :hourly_rate %>
+    <%= form.number_field :hourly_rate, step: 0.01 %>
+  </div>
+
+  <div>
+    <%= form.label :duration %>
+    <%= form.number_field :duration %>
+  </div>
+
+  <div>
+    <%= form.label :listing_type %>
+    <%= form.select :listing_type, Listing.listing_types.keys.map { |key| [key.humanize, key] } %>
+  </div>
+
+  <div>
+    <%= form.label :category %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div>
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status, ['active', 'sold', 'inactive'] %>
+  </div>
+
+  <div>
+    <%= form.label :additional_info %>
+    <%= form.text_area :additional_info %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
